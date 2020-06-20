@@ -1,0 +1,189 @@
+.body{
+  background-color: #1d2124;
+}
+
+.alta{
+   width: 50%;
+   border-radius: 10%;
+   }
+
+img{
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  width: 50%;
+  }
+
+.botones{
+  border-radius: 12px;  
+  width: 20%;
+  margin-left: 15px;  
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px 8px; 
+  font-family: sans-serif;
+  color: white; 
+ 
+  border-width: 2px;
+}
+
+#btnGuardar{  
+  background-color: MediumSeaGreen ;  
+}
+
+#btnEliminar{
+  background-color:#ff0000;    
+}
+
+#btnCancelar{
+  background-color: #3366ff;
+}
+
+.whiteLabel{
+  color: white;
+}
+
+table{
+  margin-left:auto; 
+    margin-right:auto;
+}
+
+h1{
+  text-align: center ;
+  color: whitesmoke;
+}
+h5{
+  width: 100%;    
+  color: white;
+  margin-bottom: 80px;  
+}
+
+.spaceLeft{
+  margin-left: 20px;
+}
+
+.spaceRight{
+  margin-right : 20px;
+}
+
+.radioVenta{
+  margin-left: 33px;
+}
+
+
+
+.spaceTop{
+ margin-top: 20px;
+}
+
+.spaceBottom{
+  margin-bottom: 20px;
+}
+
+
+#btnGuardar:hover{
+  background-color: rgba(255,255,255,1);
+  border: 3px solid;
+  border-color: MediumSeaGreen;
+  font-family: sans-serif;
+  color:MediumSeaGreen; 
+}
+#btnEliminar:hover{
+  background-color: rgba(255,255,255,1);
+  border: 3px solid;
+  border-color: #ff0000;
+  font-family: sans-serif;
+  color: #ff0000;
+}
+
+#btnCancelar:hover{
+  background-color: rgba(255,255,255,1);
+  border: 3px solid;
+  border-color:  #3366ff;
+  font-family: sans-serif;
+  color:  #3366ff;
+}
+
+#frmAlta{
+  margin: auto;
+  width: 40%;
+  border: 3px solid rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 12px;
+  background-color: rgb(225, 102, 0 );
+}
+
+.green-theme{
+  background-color: green;
+}
+
+.dark-theme{
+  background-color: black;
+
+}
+
+tr:hover{
+  background-color: coral;  
+}
+
+.transaccion{
+    width: 100px;
+}
+
+
+header {
+	width:100%; /* Establecemos que el header abarque el 100% del documento */
+	overflow:hidden; /* Eliminamos errores de float */
+	background:#252932;
+	margin-bottom:20px;
+}
+ 
+.wrapper {
+	width:90%; /* Establecemos que el ancho sera del 90% */
+	max-width:1000px; /* Aqui le decimos que el ancho máximo sera de 1000px */
+	margin:auto; /* Centramos los elementos */
+	overflow:hidden; /* Eliminamos errores de float */
+}
+ 
+header .logo {
+	color:#f2f2f2;
+	font-size:50px;
+	line-height:200px;
+	float:left;
+}
+
+footer .logo{
+  color:#f2f2f2;
+	font-size:50px;
+	line-height:200px;
+	float:left;
+}
+
+
+ 
+header nav {
+	float:right;
+	line-height:200px;
+}
+ 
+header nav a {
+	display:inline-block;
+	color:#fff;
+	text-decoration:none;
+	padding:10px 20px;
+	line-height:normal;
+	font-size:20px;
+	font-weight:bold;
+	-webkit-transition:all 500ms ease;
+	-o-transition:all 500ms ease;
+	transition:all 500ms ease;
+}
+ 
+header nav a:hover {
+	background:#f56f3a;
+	border-radius:50px;
+}
+
+
+

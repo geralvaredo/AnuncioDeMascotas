@@ -1,5 +1,9 @@
 function formulario(){
-  let div = $('frmAlta');        
+
+
+  let div = $('frmAlta');
+  let divAnimalImagen = document.getElementById('divAnimal');
+  let tituloAdministracion = document.getElementById('administracion');
   let frmAlta = document.createElement('form');  
   let divTitulo = document.createElement('div');
   let divAnimales = document.createElement('div'); 
@@ -28,6 +32,7 @@ function formulario(){
  
   /** ETIQUETAS */
 
+  let tituloInformacion = document.createElement('h5');
   let idTxt = document.createElement('label');
   let tituloTxt = document.createElement('label');
   let animalTxt = document.createElement('label');
@@ -50,7 +55,8 @@ function formulario(){
     descripcion.type = 'text';
     precio.type = 'text';    
     raza.type = 'text';    
-    fecha.type = 'date';    
+    fecha.type = 'date';
+
     
     btnGuardar.type = 'button';    
     btnCancelar.type = 'button';  
@@ -66,13 +72,12 @@ function formulario(){
     raza.id = 'raza';
     fecha.id = 'fecha';    
     btnGuardar.id = 'btnGuardar';
-    btnCancelar.id = 'btnCancelar';
+    //btnCancelar.id = 'btnCancelar';
     btnEliminar.id = 'btnEliminar';
 
     /** NOMBRE DE COMPONENTES */
 
     perro.name = "animal";
-    
     gato.name = "animal";
     titulo.name = "titulo";
     descripcion.name = "descrippion"; 
@@ -81,7 +86,7 @@ function formulario(){
     fecha.name = "fecha";
     
     btnGuardar.name = 'btnGuardar';
-    btnCancelar.name = 'btnCancelar';
+    //btnCancelar.name = 'btnCancelar';
     btnEliminar.name = 'btnEliminar';
 
    /** PLACEHOLDER DE COMPONENTES */
@@ -93,8 +98,11 @@ function formulario(){
    fecha.placeholder = 'Autos';
 
 
-  /** VALOR DE LAS ETIQUETAS */ 
+  /** VALOR DE LAS ETIQUETAS */
 
+    document.querySelector("h1").innerHTML = "Administracion";
+    document.getElementById('animal').src = 'img/animal.jpg';
+    tituloInformacion.innerText = "Informacion del Anuncio";
     idTxt.innerText = 'Id';
     tituloTxt.innerText = 'Titulo';
     animalTxt.innerText = 'Animal:';
@@ -106,17 +114,22 @@ function formulario(){
     fechaTxt.innerText = 'Fecha';
     cantidadDormitoriosTxt.innerText = 'Cantidad de Dormitorios';
 
-   /** CLASES DE LOS COMPONENTES    */
-   
-   divTitulo.className = 'form-group col-md-10';    
-   titulo.className = 'form-control';
-   divAnimales.className = 'form-group inline';
-   divAnimales.classList.add('spaceLeft');   
-   perro.className = 'radio';
-   gato.className = 'radio';
-   perro.classList.add('spaceLeft');
-   perro.classList.add('spaceRight');
-   gato.classList.add ('spaceLeft');
+   /** CLASES DE LOS COMPONENTES  */
+
+    administracion.classList.add('spaceBottom');
+    document.body.className = 'body';
+    div.className = 'orange-theme';
+    tituloInformacion.classList.add('informacionAnuncio');
+    divAnimalImagen.classList.add('spaceBottom');
+    divTitulo.className = 'form-group col-md-10';
+    titulo.className = 'form-control';
+    divAnimales.className = 'form-group inline';
+    divAnimales.classList.add('spaceLeft');
+    perro.className = 'radio';
+    gato.className = 'radio';
+    perro.classList.add('spaceLeft');
+    perro.classList.add('spaceRight');
+    gato.classList.add ('spaceLeft');
    
    divDescripcion.className = 'form-group col-md-10';
    descripcion.className = 'form-control';
@@ -130,11 +143,11 @@ function formulario(){
     
    divBotones.className = 'form-group';   
    btnGuardar.className = 'botones';   
-   btnCancelar.className = 'botones';
+  //btnCancelar.className = 'botones';
    btnEliminar.className = 'botones';  
    /* VALORES DE BOTONES */
    btnGuardar.value = "Guardar";
-   btnCancelar.value = "Cancelar";
+   //btnCancelar.value = "Cancelar";
    btnEliminar.value = "Eliminar"; 
 
 
@@ -151,7 +164,7 @@ function formulario(){
     perroTxt.classList.add('whiteLabel');
     gatoTxt.className = 'form-check-label';   
     gatoTxt.classList.add('whiteLabel');
-    
+
     descripcionTxt.className = 'whiteLabel';
     precioTxt.className = 'whiteLabel';
     razaTxt.className = 'whiteLabel';
@@ -161,7 +174,7 @@ function formulario(){
     
 
     /** ASOCIA EL FORM AL DOM */
-
+    frmAlta.appendChild(tituloInformacion);
     divTitulo.appendChild(tituloTxt);
     divTitulo.appendChild(titulo);    
     frmAlta.appendChild(divTitulo);
@@ -182,13 +195,12 @@ function formulario(){
     frmAlta.appendChild(divRaza);
     divFecha.appendChild(fechaTxt);
     divFecha.appendChild(fecha);    
-    frmAlta.appendChild(divFecha);   
-    
-    
+    frmAlta.appendChild(divFecha);
     divBotones.appendChild(btnGuardar);
     divBotones.appendChild(btnEliminar);
-    divBotones.appendChild(btnCancelar);
+    //divBotones.appendChild(btnCancelar);
     frmAlta.appendChild(divBotones);     
     div.appendChild(frmAlta);
+
 }
 

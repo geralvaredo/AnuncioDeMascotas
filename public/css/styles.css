@@ -80,22 +80,34 @@ h5{
 
 table{
     border: solid 4px white;
+    width: 70%;
+    height: 100%;
 
 }
 
 tr{
     width: 2040px;
     height: 50px;
+    text-align: center;
+    padding-left: 10px;
 }
 
 tr:hover{
     background-color: coral;
 }
 
-th{
-    padding-right: 50px;
-    text-align: center;
+ th {
+     margin-left: 100px;
+     padding-left: 10px;
+     padding-right: 10px;
+     text-align: center;
+     /* padding-right: 50px;
+     text-align: center;
+      padding-left: 40px;*/
+
 }
+
+
 
 
 .tabla{

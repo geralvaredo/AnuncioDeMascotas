@@ -6,12 +6,46 @@ header {
     margin-bottom:20px;
 }
 
+.header {
+    width:90%;
+    height: 150px;
+    max-width:1000px;
+    margin-top: -40px;
+    margin-left: 140px;
+    overflow:hidden;
+}
+
+
 header .logo {
     color:#f2f2f2;
-    font-size:50px;
+    font-size:40px;
     line-height:200px;
     float:left;
 }
+
+header nav {
+    float:right;
+    line-height:200px;
+}
+
+header nav a {
+    display:inline-block;
+    color:#fff;
+    text-decoration:none;
+    padding:10px 20px;
+    line-height:normal;
+    font-size:20px;
+    font-weight:bold;
+    -webkit-transition:all 500ms ease;
+    -o-transition:all 500ms ease;
+    transition:all 500ms ease;
+}
+
+header nav a:hover {
+    background:#f56f3a;
+    border-radius:50px;
+}
+
 
 img{
     display: block;
@@ -21,6 +55,7 @@ img{
     height: 100%;
 
 }
+
 
 #divAnimal{
     width: 50%;
@@ -178,57 +213,35 @@ th{
 
 }
 
-
-
 .transaccion{
     width: 100px;
 }
 
+footer{
+    margin-top: 20px;
 
-
- 
-.wrapper {
-	width:90%; /* Establecemos que el ancho sera del 90% */
-    height: 150px;
-	max-width:1000px; /* Aqui le decimos que el ancho máximo sera de 1000px */
-    margin-top: -20px;
-    margin:auto; /* Centramos los elementos */
-	overflow:hidden; /* Eliminamos errores de float */
 }
- 
+.footer{
+    background:#212529;
+    padding: 0% 5% 8% 4%;
+}
 
-
-footer .logo{
-  color:#f2f2f2;
-	font-size:50px;
-	line-height:200px;
+ .logo{
+    color:#f2f2f2;
+	font-size:30px;
+    line-height:100px;
 	float:left;
 }
 
+.derechos{
+    color:#f2f2f2;
+    font-size:23px;
+    margin-left: 850px;
+    line-height:100px;
+    float:left;
+}
+ 
 
- 
-header nav {
-	float:right;
-	line-height:200px;
-}
- 
-header nav a {
-	display:inline-block;
-	color:#fff;
-	text-decoration:none;
-	padding:10px 20px;
-	line-height:normal;
-	font-size:20px;
-	font-weight:bold;
-	-webkit-transition:all 500ms ease;
-	-o-transition:all 500ms ease;
-	transition:all 500ms ease;
-}
- 
-header nav a:hover {
-	background:#f56f3a;
-	border-radius:50px;
-}
 
 
 

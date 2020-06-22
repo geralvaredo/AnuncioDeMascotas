@@ -10,6 +10,22 @@ function crearTabla(data){
     cabecera.classList.add('orange-theme');
     cabecera.classList.add('whiteLabel');
 
+    vacunas = document.getElementById('vacunas');
+
+    var options = [
+        "Camisa",
+        "Sueter",
+        "Jeans",
+        "Sudadera",
+        "Zapatos"
+    ];
+
+    for (var i = 0; i < options.length; i++) {
+        var option = document.createElement("option");
+        option.value = options[i];
+        option.text = options[i];
+        vacunas.appendChild(option);
+    }
 
     let keys = [];
     for(var k in data[0]){

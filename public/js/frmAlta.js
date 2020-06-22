@@ -10,7 +10,8 @@ function formulario(){
   let divDescripcion = document.createElement('div');
   let divPrecio = document.createElement('div');
   let divRaza = document.createElement('div');
-  let divFecha = document.createElement('div');    
+  let divFecha = document.createElement('div');
+  let divVacunas = document.createElement('div');
   let divBotones = document.createElement('div');  
 
   /**
@@ -24,6 +25,7 @@ function formulario(){
   let precio = document.createElement('input');
   let raza = document.createElement('input');
   let fecha = document.createElement('input');
+  let vacunas = document.createElement('select');
   
     
   let btnGuardar = document.createElement('input');
@@ -31,7 +33,7 @@ function formulario(){
   let btnEliminar = document.createElement('input');
  
   /** ETIQUETAS */
-
+  let vacunasTxt = document.createElement('label');
   let tituloInformacion = document.createElement('h5');
   let idTxt = document.createElement('label');
   let tituloTxt = document.createElement('label');
@@ -63,14 +65,15 @@ function formulario(){
     btnEliminar.type = 'button';
 
     /* ID DE COMPONENTES */
-    
+
     titulo.id = 'titulo';
     perro.id = 'perro';
     gato.id = 'gato';
     descripcion.id = 'descripcion';
     precio.id = 'precio';
     raza.id = 'raza';
-    fecha.id = 'fecha';    
+    fecha.id = 'fecha';
+    vacunas.id = 'vacunas';
     btnGuardar.id = 'btnGuardar';
     //btnCancelar.id = 'btnCancelar';
     btnEliminar.id = 'btnEliminar';
@@ -84,6 +87,7 @@ function formulario(){
     precio.name = "precio";
     raza.name = "raza";
     fecha.name = "fecha";
+    vacunas.name = 'vacunas';
     
     btnGuardar.name = 'btnGuardar';
     //btnCancelar.name = 'btnCancelar';
@@ -112,6 +116,7 @@ function formulario(){
     precioTxt.innerText = 'Precio';
     razaTxt.innerText = 'Raza';
     fechaTxt.innerText = 'Fecha';
+    vacunasTxt.innerText = 'Vacunas';
     cantidadDormitoriosTxt.innerText = 'Cantidad de Dormitorios';
 
    /** CLASES DE LOS COMPONENTES  */
@@ -121,6 +126,7 @@ function formulario(){
     div.className = 'orange-theme';
     tituloInformacion.classList.add('informacionAnuncio');
     divAnimalImagen.classList.add('spaceBottom');
+    divVacunas.classList.add('spaceTop');
     divTitulo.className = 'form-group col-md-10';
     titulo.className = 'form-control';
     divAnimales.className = 'form-group inline';
@@ -130,6 +136,7 @@ function formulario(){
     perro.classList.add('spaceLeft');
     perro.classList.add('spaceRight');
     gato.classList.add ('spaceLeft');
+
    
    divDescripcion.className = 'form-group col-md-10';
    descripcion.className = 'form-control';
@@ -139,7 +146,9 @@ function formulario(){
    raza.className = 'form-control';
    divFecha.className = 'form-group col-md-5';
    fecha.className = 'form-control';
-   
+   divVacunas.className = 'form-group col-md-5';
+   vacunas.className = 'custom-select custom-select-sm-1 mb-3';
+
     
    divBotones.className = 'form-group';   
    btnGuardar.className = 'botones';   
@@ -169,9 +178,8 @@ function formulario(){
     precioTxt.className = 'whiteLabel';
     razaTxt.className = 'whiteLabel';
     fechaTxt.className = 'whiteLabel';
-    cantidadDormitoriosTxt.className = 'whiteLabel';
-    
-    
+    vacunasTxt.className = 'form-check-label';
+    vacunasTxt.classList.add('whiteLabel');
 
     /** ASOCIA EL FORM AL DOM */
     frmAlta.appendChild(tituloInformacion);
@@ -196,6 +204,9 @@ function formulario(){
     divFecha.appendChild(fechaTxt);
     divFecha.appendChild(fecha);    
     frmAlta.appendChild(divFecha);
+    divVacunas.appendChild(vacunasTxt);
+    divVacunas.appendChild(vacunas);
+    frmAlta.appendChild(divVacunas);
     divBotones.appendChild(btnGuardar);
     divBotones.appendChild(btnEliminar);
     //divBotones.appendChild(btnCancelar);

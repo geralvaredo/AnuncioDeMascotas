@@ -3,35 +3,31 @@ function $(element){
 } 
 
 var xhr = new XMLHttpRequest();
-var a ;
-let lista; 
+var a;
+var lista;
 let tipoMod = null;
 let idA = null;
+let option = null;
 
 function modulo(){
     tipoMod = 'M';        
 }
 
-function cargarDatos(option) {      
+function cargarDatos(option) {
     xhr.onreadystatechange =  () => {       
-        if(xhr.readyState == 4 && xhr.status == 200){             
-            lista = JSON.parse(xhr.responseText);           
+        if(xhr.readyState == 4 && xhr.status == 200){
+            if(lista == null || lista == undefined){
+                lista = JSON.parse(xhr.responseText);
+                localStorage.setItem("anuncios", JSON.stringify(lista));
+            }else {
+                lista.message = JSON.parse(xhr.responseText);
+            }
             //$('spinner').setAttribute("class", "show");
-            $('spinner').hidden = false;                                        
+            //$('spinner').hidden = false;
             switch (option) {
-                case 1:                    
+                case 1:
                         crearTabla(lista.data);
-                        
                         break;
-                case 2:                                          
-                        /*agregar();*/
-                            break;        
-                case 3:
-                        /*eliminar(); */   
-                         break;
-                case 4:
-                       //listarModificacion();   
-                       break;                           
                 default:
                     break;
             }
@@ -50,64 +46,14 @@ function Anuncio(id,titulo,transaccion,descripcion,precio,animal,raza,fecha){
     this.precio = precio;
     this.animal = animal;
     this.raza = raza;
-    this.fecha = fecha;  
+    this.fecha = fecha;
     
 }
 
-function crearTabla(data){  
-    
-    let div = $('divTabla');    
-    let tabla = document.createElement('table');
-    let cabecera = document.createElement('thead');
-    let tr = document.createElement('tr');    
-    div.className = 'table';     
-    cabecera.className = 'green-theme';
-    cabecera.classList.add('whiteLabel'); 
-  
-    
-    let keys = [];
-    for(var k in data[0]){
-        keys.push(k);
-    }
 
-    for(i = 0 ; i< keys.length; i++ ){        
-        let th = document.createElement('th');
-        th.innerText = keys[i];
-        tr.appendChild(th);        
-        cabecera.appendChild(tr);
-    }
 
-    let cuerpo = document.createElement('tbody');
-    cuerpo.id ='cuerpo';
-    cuerpo.className = 'dark-theme';
-    cuerpo.classList.add('whiteLabel');
-    for(i = 0 ;i< data.length; i++){
-        let tr = document.createElement('tr');
-            for(value in data[i]){
-                let td = document.createElement('td');
-                td.innerText = data[i][value];
-                tr.appendChild(td);
-            }
-        tr.addEventListener('click', (e) => {
-          a = new Anuncio(tr.children[0].innerText,tr.children[1].innerText,tr.children[2].innerText,tr.children[3].innerText,tr.children[4].innerText,tr.children[5].innerText,tr.children[6].innerText,tr.children[7].innerText) ;      
-          e.preventDefault();
-          e.stopPropagation();
-          controlador(a);
-            
-        }); 
-        cuerpo.appendChild(tr);
-    }    
-    $('spinner').hidden = true;
-    tabla.appendChild(cabecera);
-    tabla.appendChild(cuerpo);    
-    div.appendChild(tabla); 
-    
-    
-}
-
-function controlador(a){    //TO DO
-        
-    idA = a.id;
+function controlador(anuncio){
+    a = anuncio;
     let transaccion = null;
     $('btnEliminar').hidden = false;
     $('titulo').value = a.titulo;
@@ -125,114 +71,112 @@ function controlador(a){    //TO DO
     $('btnGuardar').addEventListener('click', (e)=> {
         e.preventDefault();
         e.stopPropagation();
-        listarModificacion();        
     });
 }
 
- function listarModificacion(){    
-        let p = traerAnuncio();
-        p.id = idA;
+ function listarModificacion(a){
+     lista = JSON.parse(localStorage.getItem('anuncios'));
         for(var i=0; i < lista.data.length; i++){
-            if(lista.data[i].id != idA){
-                lista.data.push(p);
+            if(lista.data[i].id == a.id){
+                lista.data[i].titulo =  a.titulo;
+                lista.data[i].transaccion =  a.transaccion;
+                lista.data[i].descripcion =  a.descripcion;
+                lista.data[i].precio =    a.precio;
+                lista.data[i].animal =    a.animal;
+                lista.data[i].raza =    a.raza;
+                lista.data[i].fecha =    a.fecha;
                 break; 
             }
         }
-        vaciarCampos();    
-        crearTabla(lista.data); 
+        vaciarCampos();
+        limpiarTabla();
+        crearTabla(lista.data);
+     lista = JSON.stringify(lista);
+     localStorage.setItem("anuncios", lista);
+     modificarElemento();
+
 } 
 function limpiarTabla(){    
     $('divTabla').innerText = "";
 }
 
-function vaciarCampos(){
-    $('titulo').value = ' ';
-    document.getElementsByName('animal')[0].checked = false;
-    document.getElementsByName('animal')[1].checked = false;
-    $('descripcion').value = ' ';    
-    $('precio').value = ' ';
-    $('raza').value = ' ';
-    $('fecha').value = ' ';    
+
+
+function eliminarElemento(){
+    baja(a.id);
+}
+
+function modificarElemento() {
+    modificar(a);
 }
 
 
-function eliminar(){   
-    for(i=0; i < lista.data.length; i++){        
-        if(lista.data[i].id == idA){
-           
-            let p = new Anuncio(idA,$('titulo').value,"venta",$('descripcion').value,$('precio').value,valorRadio('animal'),$('raza').value,$('fecha').value);
+function eliminar(){
+
+    lista = JSON.parse(localStorage.getItem('anuncios'));
+    for(i=0; i < lista.data.length; i++){
+        if(lista.data[i].id == a.id){
             lista.data.splice(i,1);
-            console.log(p.id);
-            baja(p.id);
+            //console.log(p baja(p.id);
             vaciarCampos();
-            $('spinner').hidden = false;
+            //$('spinner').hidden = false;
             break;
         }
     }    
-    limpiarTabla();    
+    limpiarTabla();
     crearTabla(lista.data);
+    lista = JSON.stringify(lista);
+    localStorage.setItem("anuncios", lista);
+    tipoMod = null;
+    eliminarElemento();
 }
 
 
 function guardar(){
-    a = traerAnuncio();
-    if(tipoMod == null || tipoMod == undefined){        
-        agregar(a);        
-        listarNuevo(a);
-        vaciarCampos();
-        //crearTabla(lista.data);
-        
-    }else{        
-        modificar(a);
-        $('btnGuardar').removeEventListener('click',modulo(),false);        
-        tipoMod = null;         
-    }      
-        
+    if(!validacionCampos()){
+        anuncio = traerAnuncio();
+        if(tipoMod == null || tipoMod == undefined){
+            agregarNuevo(anuncio);
+            agregar(anuncio);
+            vaciarCampos();
+            //crearTabla(lista.data);
+        }else{
+            listarModificacion(anuncio);
+            $('btnGuardar').removeEventListener('click',modulo(),false);
+            tipoMod = null;
+        }
+    }
+
 }
 
-function listarNuevo(a){
-        
-    for(var i=0; i < lista.data.length; i++){
-        if(lista.data[i].id != a.id){
-            lista.data.push(a);
-            break; 
-        }
-    }    
-    
-    texto = '<tr>'+ '<td>' + a.id + '<td>' 
-    + a.titulo + '</td><td>' 
-    + a.transaccion + '</td> <td>' 
-    + a.descripcion +'</td> <td>'
-    + a.precio + '</td> <td>'
-    + a.animal + '</td> <td>'
-    + a.raza + '</td> <td>'
-    + a.fecha + '</td> <td>'
-    + '</tr>' ;     
-    $('cuerpo').innerHTML += texto;
+function agregarNuevo(a){
+    lista = JSON.parse(localStorage.getItem('anuncios'));
+    limpiarTabla();
+    lista.data.push(a);
+    crearTabla(lista.data);
+    lista = JSON.stringify(lista);
+    localStorage.setItem("anuncios", lista);
+
 }
 
 
 
 window.onload = () => {        
-    formulario();    
-
+    formulario();
     $('btnGuardar').addEventListener('click', ()=> {
-        guardar();     
-        
-        
-    }); 
-
-    $('btnCancelar').addEventListener('click', () => {     
+        guardar();
+        $('btnEliminar').hidden = true;
+    });
+    /*$('btnCancelar').addEventListener('click', () => {
        
         $('frmAlta').hidden = true;
         $('btnEliminar').hidden = true;
-    });
+    });*/
 
-    $('btnEliminar').addEventListener('click', () => {     
+    $('btnEliminar').addEventListener('click', () => {
         eliminar();
+        $('btnEliminar').hidden = true;
     });
-    
-
     document.forms[0].addEventListener("submit", function(e) {
         e.preventDefault();
     });    
@@ -245,18 +189,23 @@ window.onload = () => {
 
 
 function traerAnuncio(){
-    var idA = traerUltimoId().toString();
-    if(validacionCampos){
+    var idA = null;
+    if(tipoMod == null || tipoMod == undefined){
+       idA = traerUltimoId().toString();
+   }else{
+       idA = a.id;
+   }
     let titulo = $('titulo').value;
     let animal =  valorRadio('animal');
     let transaccion = "venta";        
     let descripcion = $('descripcion').value;
     let precio = $('precio').value;
     let raza = $('raza').value    
-    let fecha = $('fecha').value;   
+    let fecha = $('fecha').value;
     return new Anuncio(idA,titulo,transaccion,descripcion,precio,animal,raza,fecha);
-    }      
-    
+
+
+
 }
 
 function valorRadio(s){
@@ -271,68 +220,81 @@ function valorRadio(s){
 }
 
 function traerUltimoId(){
-    a = lista.data.pop().id;
-    return a++;
+    if(lista.data == null || lista.data == undefined){
+        lista = JSON.parse(localStorage.getItem('anuncios'));
+    }
+    a = parseInt(lista.data.pop().id);
+    return a = a + 1;
 }
+
+function vaciarCampos(){
+    $('titulo').value = ' ';
+    document.getElementsByName('animal')[0].checked = false;
+    document.getElementsByName('animal')[1].checked = false;
+    $('descripcion').value = ' ';
+    $('precio').value = ' ';
+    $('raza').value = ' ';
+    $('fecha').value = ' ';
+}
+
 
  function validacionCampos(){
     var retorno = false;
     var titulo = $('titulo').value ;
-    var transaccion = valorRadio('transaccion');
+    var animal = valorRadio('animal');
     var descripcion = $('descripcion').value;
     var precio = $('precio').value;
-    var banos = $('raza').value;
-    var autos = $('cantidadAutos').value;
-    var dormitorios = $('cantidadDormitorios').value; 
+    var raza = $('raza').value;
+    var fecha = $('fecha').value;
    
-    if(titulo.length < 10)
+    if(titulo == '')
     {        
-        mensaje("titulo");
+        mensaje("nulos",0);
         colorearCampos("titulo");        
         retorno = true;
-    }    
-    
-    if(descripcion.length < 10)
-    {         
-        mensaje("descripcion");
-        colorearCampos("descripcion");
-        retorno = true;
-    }    
-    
-    if(transaccion == null)
-    {
-        mensaje("transaccion");
-        colorearCampos("transaccion");
-        retorno = true;
-    }   
-
-    if(precio.length < 5)
-    {         
-        mensaje("precio");
-        colorearCampos("precio");
-        retorno = true;
     }
+     if(titulo.length < 1)
+     {
+         mensaje("titulo", 1);
+         colorearCampos("titulo");
+         retorno = true;
+     }
+     /*
+     if(descripcion == null)
+     {
+         mensaje("nulos");
+         colorearCampos("descripcion");
+         retorno = true;
+     }
 
-    if(banos.length < 1)
-    {         
-        mensaje("cantidadBanos");
-        colorearCampos("cantidadBanos");
-        retorno = true;
-    }
+     if(animal == null){
+         mensaje("nulos");
+         colorearCampos("animal");
+         retorno = true;
+     }
 
-    if(autos.length < 1)
-    {         
-        mensaje("cantidadAutos");
-        colorearCampos("cantidadAutos");
-        retorno = true;
-    }
+     if(precio == null)
+     {
+         mensaje("nulos");
+         colorearCampos("precio");
+         retorno = true;
+     }
 
-    if(dormitorios.length < 1)
-    {         
-        mensaje("cantidadDormitorios");
-        colorearCampos("cantidadDormitorios");
-        retorno = true;
-    }
+     if(raza == null)
+     {
+         mensaje("nulos");
+         colorearCampos("raza");
+         retorno = true;
+     }
+
+     if(fecha == null)
+     {
+         mensaje("nulos");
+         colorearCampos("fecha");
+         retorno = true;
+     }
+ */
+
     
     return retorno;
     
@@ -347,11 +309,11 @@ function traerUltimoId(){
     
 }
 
-function mensaje(campo){
+function mensaje(campo,valor){
     var mensaje ;
     switch (campo) {
         case 'titulo':
-        mensaje ="Debe ingresar un titulo con mas de 3 caracteres" ;  
+        mensaje ="Debe ingresar un titulo con mas de" + valor + "caracteres" ;
         break;
         case 'descripcion':
         mensaje = "Debe ingresar un apellido con mas de 3 caracteres" ;     
@@ -370,7 +332,10 @@ function mensaje(campo){
         break; 
         case 'cantidadDormitorios' :
         mensaje = "Debe seleccionar un sexo" ;
-        break;           
+        break;
+        case 'nulos':
+            mensaje = "no puede ingresar los campos nulos";
+            break;
         default:
             break;
     }

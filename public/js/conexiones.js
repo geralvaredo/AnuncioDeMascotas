@@ -13,7 +13,7 @@ function agregar(a){
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type","application/json");  
   xhr.send( JSON.stringify( a ));
-  //cargarDatos(2);
+  cargarDatos(0);
 }
 
 function baja(a){ 
@@ -22,7 +22,7 @@ function baja(a){
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type","application/json");  
   xhr.send(JSON.stringify({"id": a }));
-  //cargarDatos(3);
+  cargarDatos(0);
 }
 
 function modificar(a){
@@ -30,5 +30,5 @@ function modificar(a){
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type","application/json");  
   xhr.send( JSON.stringify( a ));
-  //cargarDatos(4);
+  cargarDatos(0);
 }

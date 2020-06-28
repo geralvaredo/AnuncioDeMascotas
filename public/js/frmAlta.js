@@ -26,6 +26,9 @@ function formulario(){
   let raza = document.createElement('input');
   let fecha = document.createElement('input');
   let vacunas = document.createElement('select');
+  let imgRaza = document.createElement('img');
+  let imgMono = document.createElement('img');
+  let imgVacuna = document.createElement('img');
   
     
   let btnGuardar = document.createElement('input');
@@ -42,9 +45,9 @@ function formulario(){
   let gatoTxt = document.createElement('label');
   let descripcionTxt = document.createElement('label');
   let precioTxt = document.createElement('label');
-  let razaTxt = document.createElement('label');
-  let fechaTxt = document.createElement('label');
-  let cantidadDormitoriosTxt = document.createElement('label');
+  //let razaTxt = document.createElement('label');
+  //let fechaTxt = document.createElement('label');
+
     
 
   /** TIPOS DE COMPONENTES */
@@ -58,7 +61,9 @@ function formulario(){
     precio.type = 'text';    
     raza.type = 'text';    
     fecha.type = 'date';
-
+    imgRaza.src = 'img/perro.png';
+    imgMono.src = 'img/mono.jpg';
+    imgVacuna.src = 'img/vacuna.png';
     
     btnGuardar.type = 'button';    
     btnCancelar.type = 'button';  
@@ -74,6 +79,9 @@ function formulario(){
     raza.id = 'raza';
     fecha.id = 'fecha';
     vacunas.id = 'vacunas';
+    imgMono.id = 'iMono';
+    imgRaza.id = 'iRaza';
+    imgVacuna.id = 'iVacuna';
     btnGuardar.id = 'btnGuardar';
     //btnCancelar.id = 'btnCancelar';
     btnEliminar.id = 'btnEliminar';
@@ -105,7 +113,7 @@ function formulario(){
   /** VALOR DE LAS ETIQUETAS */
 
     document.querySelector("h1").innerHTML = "Administracion";
-    document.getElementById('animal').src = 'img/animal.jpg';
+    document.getElementById('animal').src = 'img/mascota.png';
     tituloInformacion.innerText = "Informacion del Anuncio";
     idTxt.innerText = 'Id';
     tituloTxt.innerText = 'Titulo';
@@ -114,10 +122,10 @@ function formulario(){
     gatoTxt.innerText = 'Gato'; 
     descripcionTxt.innerText = 'Descripcion';
     precioTxt.innerText = 'Precio';
-    razaTxt.innerText = 'Raza';
-    fechaTxt.innerText = 'Fecha';
-    vacunasTxt.innerText = 'Vacunas';
-    cantidadDormitoriosTxt.innerText = 'Cantidad de Dormitorios';
+    //razaTxt.innerText = 'Raza';
+    //fechaTxt.innerText = 'Fecha';
+    //vacunasTxt.innerText = 'Vacunas';
+
 
    /** CLASES DE LOS COMPONENTES  */
 
@@ -137,17 +145,24 @@ function formulario(){
     perro.classList.add('spaceRight');
     gato.classList.add ('spaceLeft');
 
-   
+
+
    divDescripcion.className = 'form-group col-md-10';
    descripcion.className = 'form-control';
    divPrecio.className = 'form-group col-md-10';
    precio.className = 'form-control';
-   divRaza.className = 'form-group col-md-5';
-   raza.className = 'form-control';
-   divFecha.className = 'form-group col-md-5';
-   fecha.className = 'form-control';
-   divVacunas.className = 'form-group col-md-5';
-   vacunas.className = 'custom-select custom-select-sm-1 mb-3';
+   //divRaza.className = 'form-group col-md-5';
+   //raza.className = 'form-control';
+    imgRaza.className = 'd-inline';
+    raza.className = 'form-control col-md-3 spaceLeft d-inline';
+   //divFecha.className = 'form-group col-md-5';
+   //fecha.className = 'form-control';
+    imgMono.className = 'd-inline spaceLeft';
+    fecha.className = 'form-control col-md-3 spaceLeft d-inline';
+   //divVacunas.className = 'form-group col-md-5';
+   divVacunas.className = 'container spaceTop';
+   imgVacuna.className = 'd-inline spaceLeft';
+   vacunas.className = 'custom-select col-md-2 spaceLeft';
 
     
    divBotones.className = 'form-group';   
@@ -176,10 +191,10 @@ function formulario(){
 
     descripcionTxt.className = 'whiteLabel';
     precioTxt.className = 'whiteLabel';
-    razaTxt.className = 'whiteLabel';
-    fechaTxt.className = 'whiteLabel';
-    vacunasTxt.className = 'form-check-label';
-    vacunasTxt.classList.add('whiteLabel');
+    //razaTxt.className = 'whiteLabel';
+    //fechaTxt.className = 'whiteLabel';
+    //vacunasTxt.className = 'form-check-label';
+    //vacunasTxt.classList.add('whiteLabel');
 
     /** ASOCIA EL FORM AL DOM */
     frmAlta.appendChild(tituloInformacion);
@@ -198,13 +213,18 @@ function formulario(){
     divPrecio.appendChild(precioTxt);
     divPrecio.appendChild(precio);
     frmAlta.appendChild(divPrecio);
-    divRaza.appendChild(razaTxt);
-    divRaza.appendChild(raza);
-    frmAlta.appendChild(divRaza);
-    divFecha.appendChild(fechaTxt);
-    divFecha.appendChild(fecha);    
-    frmAlta.appendChild(divFecha);
-    divVacunas.appendChild(vacunasTxt);
+    //divRaza.appendChild(razaTxt);
+    //divRaza.appendChild(raza);
+    //frmAlta.appendChild(divRaza);
+    //divFecha.appendChild(fechaTxt);
+    //divFecha.appendChild(fecha);
+    //frmAlta.appendChild(divFecha);
+    //divVacunas.appendChild(vacunasTxt);
+    divVacunas.appendChild(imgRaza)
+    divVacunas.appendChild(raza);
+    divVacunas.appendChild(imgMono);
+    divVacunas.appendChild(fecha);
+    divVacunas.appendChild(imgVacuna);
     divVacunas.appendChild(vacunas);
     frmAlta.appendChild(divVacunas);
     divBotones.appendChild(btnGuardar);

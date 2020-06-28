@@ -22,23 +22,18 @@ function cargarDatos(option) {
             }else {
                 lista.message = JSON.parse(xhr.responseText);
             }
+            if(option){
+                crearTabla(lista.data);
+            }
             //$('spinner').setAttribute("class", "show");
             //$('spinner').hidden = false;
-            switch (option) {
-                case 1:
-                        crearTabla(lista.data);
-                        break;
-                default:
-                    break;
-            }
-
         }
     };
 }
 
 
 
-function Anuncio(id,titulo,transaccion,descripcion,precio,animal,raza,fecha){
+function Anuncio(id,titulo,transaccion,descripcion,precio,animal,raza,fecha,vacunas){
     this.id = id;
     this.titulo = titulo;
     this.transaccion = transaccion;
@@ -47,7 +42,7 @@ function Anuncio(id,titulo,transaccion,descripcion,precio,animal,raza,fecha){
     this.animal = animal;
     this.raza = raza;
     this.fecha = fecha;
-    
+    this.vacunas = vacunas;
 }
 
 
@@ -67,6 +62,7 @@ function controlador(anuncio){
     $('precio').value = a.precio;
     $('raza').value = a.raza;
     $('fecha').value = a.fecha;
+    $('vacunas').value = a.vacunas;
     $('btnGuardar').addEventListener('click', modulo(),false);
     $('btnGuardar').addEventListener('click', (e)=> {
         e.preventDefault();
@@ -85,7 +81,8 @@ function controlador(anuncio){
                 lista.data[i].animal =    a.animal;
                 lista.data[i].raza =    a.raza;
                 lista.data[i].fecha =    a.fecha;
-                break; 
+                lista.data[i].vacunas =    a.vacunas;
+                break;
             }
         }
         vaciarCampos();
@@ -93,12 +90,10 @@ function controlador(anuncio){
         crearTabla(lista.data);
      lista = JSON.stringify(lista);
      localStorage.setItem("anuncios", lista);
-     modificarElemento();
+     modificarElemento(a);
 
 } 
-function limpiarTabla(){    
-    $('divTabla').innerText = "";
-}
+
 
 
 
@@ -106,7 +101,7 @@ function eliminarElemento(){
     baja(a.id);
 }
 
-function modificarElemento() {
+function modificarElemento(a) {
     modificar(a);
 }
 
@@ -156,7 +151,6 @@ function agregarNuevo(a){
     crearTabla(lista.data);
     lista = JSON.stringify(lista);
     localStorage.setItem("anuncios", lista);
-
 }
 
 
@@ -202,10 +196,8 @@ function traerAnuncio(){
     let precio = $('precio').value;
     let raza = $('raza').value    
     let fecha = $('fecha').value;
-    return new Anuncio(idA,titulo,transaccion,descripcion,precio,animal,raza,fecha);
-
-
-
+    let vacunas = $('vacunas').value;
+    return new Anuncio(idA,titulo,transaccion,descripcion,precio,animal,raza,fecha,vacunas);
 }
 
 function valorRadio(s){
@@ -227,150 +219,3 @@ function traerUltimoId(){
     return a = a + 1;
 }
 
-function vaciarCampos(){
-    $('titulo').value = ' ';
-    document.getElementsByName('animal')[0].checked = false;
-    document.getElementsByName('animal')[1].checked = false;
-    $('descripcion').value = ' ';
-    $('precio').value = ' ';
-    $('raza').value = ' ';
-    $('fecha').value = ' ';
-}
-
-
- function validacionCampos(){
-    var retorno = false;
-    var titulo = $('titulo').value ;
-    var animal = valorRadio('animal');
-    var descripcion = $('descripcion').value;
-    var precio = $('precio').value;
-    var raza = $('raza').value;
-    var fecha = $('fecha').value;
-   
-    if(titulo == '')
-    {        
-        mensaje("nulos",0);
-        colorearCampos("titulo");        
-        retorno = true;
-    }
-     if(titulo.length < 1)
-     {
-         mensaje("titulo", 1);
-         colorearCampos("titulo");
-         retorno = true;
-     }
-     /*
-     if(descripcion == null)
-     {
-         mensaje("nulos");
-         colorearCampos("descripcion");
-         retorno = true;
-     }
-
-     if(animal == null){
-         mensaje("nulos");
-         colorearCampos("animal");
-         retorno = true;
-     }
-
-     if(precio == null)
-     {
-         mensaje("nulos");
-         colorearCampos("precio");
-         retorno = true;
-     }
-
-     if(raza == null)
-     {
-         mensaje("nulos");
-         colorearCampos("raza");
-         retorno = true;
-     }
-
-     if(fecha == null)
-     {
-         mensaje("nulos");
-         colorearCampos("fecha");
-         retorno = true;
-     }
- */
-
-    
-    return retorno;
-    
-
-    /* if(!validacionFecha(fecha))
-    {
-        mensaje("fecha");
-        colorearCampos("fecha");
-        retorno = false;
-    } */ 
-
-    
-}
-
-function mensaje(campo,valor){
-    var mensaje ;
-    switch (campo) {
-        case 'titulo':
-        mensaje ="Debe ingresar un titulo con mas de" + valor + "caracteres" ;
-        break;
-        case 'descripcion':
-        mensaje = "Debe ingresar un apellido con mas de 3 caracteres" ;     
-        break;
-        case 'transaccion':
-        mensaje = "Debe ingresar una fecha menor al dia de hoy" ;  
-        break;
-        case 'precio' :
-        mensaje = "Debe seleccionar un sexo" ;
-        break;
-        case 'cantidadBanos' :
-        mensaje = "Debe seleccionar un sexo" ;
-        break;
-        case 'cantidadAutos' :
-        mensaje = "Debe seleccionar un sexo" ;
-        break; 
-        case 'cantidadDormitorios' :
-        mensaje = "Debe seleccionar un sexo" ;
-        break;
-        case 'nulos':
-            mensaje = "no puede ingresar los campos nulos";
-            break;
-        default:
-            break;
-    }
-      
-    alert(mensaje);
-
-}
-
-/* function validacionFecha(fecha){
-    var retorno = true;
-
-    var anio = fecha.split("-")[0];
-    var mes =  fecha.split("-")[1];
-    var dia =  fecha.split("-")[2];
-    var fechaIngresada = new Date(anio, mes, dia);
-    var fechaActual =  new Date();
-    if(fechaActual.getTime() < fechaIngresada.getTime()){
-        retorno = false;  
-    }     
-    
-    return retorno;
-} */
-
-function colorearCampos(campo){
-    var cam = document.getElementById(campo);
-    cam.style.borderColor = "red" ;
-    cam.style.borderWidth = "5px";
-    
-}
-
-/* function sinColor(){
-    document.getElementById("nombre").style.border = '' ;
-    var apellido = document.getElementById("apellido").style.border = '' ;
-    var fecha = document.getElementById("fecha").style.border = '' ;   
-    var sexo = genero("sexo") ;
-    sexo.style.border = '';
-    
-}  */

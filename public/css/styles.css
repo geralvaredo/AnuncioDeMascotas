@@ -16,6 +16,13 @@ header {
 }
 
 
+.logo{
+    color:#f2f2f2;
+    font-size:30px;
+    line-height:100px;
+    float:left;
+}
+
 header .logo {
     color:#f2f2f2;
     font-size:40px;
@@ -56,6 +63,15 @@ img{
 
 }
 
+#iVacuna , #iRaza , #iMono{
+    width: 6%;
+    height: 6%;
+}
+
+
+
+#vacunas{
+}
 
 #divAnimal{
     width: 50%;
@@ -85,6 +101,19 @@ table{
 
 }
 
+.tabla{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.filtro{
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+
 tr{
     width: 2040px;
     height: 50px;
@@ -110,18 +139,16 @@ tr:hover{
 
 
 
-.tabla{
-    margin-left: auto;
-    margin-right: auto;
-}
+
 
 
 #frmAlta{
     margin: auto;
-    width: 40%;
+    width: 80%;
     border: 3px solid rgb(255, 255, 255);
     padding: 10px;
     border-radius: 12px;
+    height: 50%;
 }
 
 
@@ -238,12 +265,7 @@ footer{
     padding: 0% 5% 8% 4%;
 }
 
- .logo{
-    color:#f2f2f2;
-	font-size:30px;
-    line-height:100px;
-	float:left;
-}
+
 
 .derechos{
     color:#f2f2f2;

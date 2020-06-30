@@ -6,12 +6,7 @@ header {
     margin-bottom:20px;
 }
 
-#divOtrosFiltros{
-    background-color: #EE826B;
-    width: 70%;
-    height: 50%;
-    border-radius: 12px;
-}
+
 
 .header {
     width:90%;
@@ -117,6 +112,24 @@ table{
     margin-left: auto;
     margin-right: auto;
 
+}
+
+#divPromedioRaza{
+    /*width: auto;
+    height: auto;*/
+    width: 800px;
+    height: 80px;
+    border: 4px solid;
+    border-radius: 12px;
+    border-color: white;
+}
+
+
+.tipoRaza{
+    margin-top: 10px;
+    padding-top: 4px;
+    padding-left: 15px;
+    padding-bottom: 15px;
 }
 
 
@@ -257,6 +270,10 @@ tr:hover{
 .dark-theme{
   background-color: black;
 
+}
+
+.gold-theme{
+    background-color: #EA880B;
 }
 
 .transaccion{

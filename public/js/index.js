@@ -26,7 +26,7 @@ function cargarDatos(option) {
                 lista.message = JSON.parse(xhr.responseText);
             }
             if(option){
-                crearFiltros(lista.data);
+                crearFiltrosDeColumnas(lista.data);
                 crearTabla(lista.data);
             }
             //$('spinner').setAttribute("class", "show");
@@ -78,7 +78,7 @@ window.onload = () => {
         guardar();
         $('btnEliminar').hidden = true;
     });
-
+    filtroTipoRaza();
     /*$('btnCancelar').addEventListener('click', () => {
        
         $('frmAlta').hidden = true;
@@ -95,6 +95,7 @@ window.onload = () => {
     $('btnEliminar').hidden = true;
     
     listado(xhr);
+    promedio("C");
     
 }  
 

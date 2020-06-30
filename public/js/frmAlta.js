@@ -36,7 +36,7 @@ function formulario(){
   let btnEliminar = document.createElement('input');
  
   /** ETIQUETAS */
-  let vacunasTxt = document.createElement('label');
+  //let vacunasTxt = document.createElement('label');
   let tituloInformacion = document.createElement('h5');
   let idTxt = document.createElement('label');
   let tituloTxt = document.createElement('label');

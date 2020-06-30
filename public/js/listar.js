@@ -9,7 +9,7 @@ function traerAnuncio(){
     let animal =  valorRadio('animal');
     let transaccion = "venta";
     let descripcion = $('descripcion').value;
-    let precio = $('precio').value;
+    let precio = parseInt($('precio').value);
     let raza = $('raza').value
     let fecha = $('fecha').value;
     let vacunas = $('vacunas').value;
